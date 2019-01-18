@@ -17,13 +17,22 @@ public class BDSqlite implements IBaseDeDatos{
     @Override
     public void guardar(Producto producto) throws SQLException {
 
+      /*String guardado = String.format("INSERT INTO product VALUES(%d, \'%s\',%g);",
+                producto.obtenerId(),
+                producto.obtenerNombre(),
+                producto.obtenerPrecio());
+        System.out.println(guardado);
+      final Statement stm = conexionPrincipal.createStatement();
+      stm.executeUpdate(guardado);*/
+
+
        final PreparedStatement guardarEnBaseDeDatos = conexionPrincipal
                     .prepareStatement("INSERT INTO product VALUES (?, ?, ?)");
             guardarEnBaseDeDatos.setLong(1, producto.obtenerId());
             guardarEnBaseDeDatos.setString(2, producto.obtenerNombre());
             guardarEnBaseDeDatos.setDouble(3, producto.obtenerPrecio());
             guardarEnBaseDeDatos.executeUpdate();
-
+    
 
     }
 
